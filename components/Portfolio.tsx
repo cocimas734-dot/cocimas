@@ -19,20 +19,20 @@ const Portfolio: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {PROJECTS.map((project) => (
-            <div key={project.id} className="group relative overflow-hidden h-[400px]">
+            <div key={project.id} className="group relative overflow-hidden h-72 sm:h-[400px]">
               <img
                 src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-transparent to-transparent opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-black-900/40 to-transparent opacity-90" />
 
-              <div className="absolute bottom-0 left-0 p-8 w-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-gold-500 text-xs font-bold uppercase tracking-wider mb-2 block">
+              <div className="absolute bottom-0 left-0 p-6 sm:p-8 w-full transform translate-y-2 sm:translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-gold-500 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1 sm:mb-2 block">
                   {project.category}
                 </span>
-                <h4 className="text-2xl font-bold text-white mb-2">{project.title}</h4>
-                <div className="flex items-center text-gray-400 text-sm">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">{project.title}</h4>
+                <div className="flex items-center text-gray-400 text-xs sm:text-sm">
                   <MapPin size={14} className="mr-1" />
                   {project.location}
                 </div>

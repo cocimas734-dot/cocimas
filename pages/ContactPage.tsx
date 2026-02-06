@@ -35,7 +35,7 @@ const ContactPage: React.FC = () => {
                 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative z-10">
                     <div className="text-center">
-                        <h1 className="font-display font-black text-5xl md:text-8xl text-black-900 mb-6 uppercase tracking-tighter leading-none">
+                        <h1 className="font-display font-black text-4xl sm:text-6xl md:text-8xl text-black-900 mb-6 uppercase tracking-tighter leading-[1] sm:leading-none">
                             Hablemos de<br />Tu Visión
                         </h1>
                         <div className="w-24 h-2 bg-black-900 mx-auto mb-8"></div>
@@ -64,7 +64,7 @@ const ContactPage: React.FC = () => {
                                 <span className="text-gold-500 font-bold tracking-[0.3em] uppercase text-xs mb-4 block border-l-4 border-gold-500 pl-4">
                                     Información de Contacto
                                 </span>
-                                <h2 className="font-display font-black text-4xl md:text-5xl text-white leading-tight mb-6">
+                                <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-6">
                                     INICIA TU <br /><span className="text-gold-500">TRANSFORMACIÓN</span>
                                 </h2>
                                 <p className="text-gray-400 text-lg leading-relaxed">
@@ -248,7 +248,7 @@ const ContactPage: React.FC = () => {
             </section>
 
             {/* Map Section */}
-            <section className="w-full h-[500px] relative bg-gray-900 border-t border-gray-800">
+            <section className="w-full h-72 sm:h-[500px] relative bg-gray-900 border-t border-gray-800">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.4!2d-68.0!3d10.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDEyJzAwLjAiTiA2OMKwMDAnMDAuMCJX!5e0!3m2!1ses!2sve!4v1234567890!5m2!1ses!2sve"
                     className="w-full h-full border-0 grayscale"

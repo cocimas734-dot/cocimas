@@ -4,7 +4,7 @@ import { ArrowRight, MessageCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-[100svh] sm:h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black-900 via-black-900/80 to-black-900/40 z-10" />
@@ -17,11 +17,11 @@ const Hero: React.FC = () => {
 
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-start pt-20">
         <div className="flex items-center gap-2 mb-6 animate-fade-in-up">
-           <div className="h-[2px] w-12 bg-gold-500"></div>
-           <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-sm">Identidad & Excelencia</span>
+          <div className="h-[2px] w-12 bg-gold-500"></div>
+          <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-sm">Identidad & Excelencia</span>
         </div>
 
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-8 max-w-4xl tracking-tighter animate-fade-in-up delay-100">
+        <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black text-white leading-[1.1] mb-8 max-w-4xl tracking-tighter animate-fade-in-up delay-100">
           CONSTRUIMOS <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-500 to-gold-400">
             TU VISIÓN
@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
         </h1>
 
         <p className="text-gray-300 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed font-light animate-fade-in-up delay-200">
-          Servicios integrales de remodelación, construcción y decoración en <strong>Valencia y Carabobo</strong>. 
+          Servicios integrales de remodelación, construcción y decoración en <strong>Valencia y Carabobo</strong>.
           Transformamos espacios con acabados de alta calidad y precisión técnica.
         </p>
 
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
           </a>
         </div>
       </div>
-      
+
       {/* Decorative Strip */}
       <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-gold-500 via-gold-400 to-black-900 z-30" />
     </section>

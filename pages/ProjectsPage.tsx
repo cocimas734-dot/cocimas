@@ -22,7 +22,7 @@ const ProjectsPage: React.FC = () => {
                 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 relative z-10">
                     <div className="text-center">
-                        <h1 className="font-display font-black text-5xl md:text-8xl text-black-900 mb-6 uppercase tracking-tighter leading-none">
+                        <h1 className="font-display font-black text-4xl sm:text-6xl md:text-8xl text-black-900 mb-6 uppercase tracking-tighter leading-[1] sm:leading-none">
                             Nuestros<br />Proyectos
                         </h1>
                         <div className="w-24 h-2 bg-black-900 mx-auto mb-8"></div>
@@ -46,7 +46,7 @@ const ProjectsPage: React.FC = () => {
                         <div className="order-2 lg:order-1 space-y-8">
                             <div>
                                 <span className="text-gold-500 font-bold tracking-[0.2em] uppercase text-sm mb-2 block border-l-4 border-gold-500 pl-4">Excelencia Constructiva</span>
-                                <h2 className="font-display font-black text-4xl md:text-5xl text-white leading-tight">
+                                <h2 className="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white leading-tight">
                                     CALIDAD QUE <span className="text-gold-500">PERDURA</span> EN EL TIEMPO.
                                 </h2>
                             </div>
@@ -74,7 +74,7 @@ const ProjectsPage: React.FC = () => {
                             <div className="absolute inset-0 bg-gold-500/20 blur-2xl -z-10 rounded-full"></div>
                             <img
                                 alt="Arquitectura moderna oscura"
-                                className="relative transition-transform duration-700 hover:scale-105 rounded-sm w-full h-[500px] object-cover border-b-8 border-r-8 border-gold-500 shadow-2xl"
+                                className="relative transition-transform duration-700 hover:scale-105 rounded-sm w-full h-72 sm:h-[500px] object-cover border-b-8 border-r-8 border-gold-500 shadow-2xl"
                                 src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800"
                             />
                         </div>
@@ -104,26 +104,26 @@ const ProjectsPage: React.FC = () => {
                     {/* Projects Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {filteredProjects.map((project) => (
-                            <article key={project.id} className="group relative h-[450px] cursor-pointer overflow-hidden border-4 border-gold-500 bg-gray-900">
+                            <article key={project.id} className="group relative h-80 sm:h-[450px] cursor-pointer overflow-hidden border-2 sm:border-4 border-gold-500 bg-gray-900">
                                 <img
                                     alt={project.title}
                                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     src={project.image}
                                 />
-                                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black-900 via-black-900/80 to-transparent">
-                                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        <span className="text-gold-500 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">
+                                <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 bg-gradient-to-t from-black-900 via-black-900/80 to-transparent">
+                                    <div className="transform translate-y-2 sm:translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        <span className="text-gold-500 font-bold text-[10px] sm:text-xs uppercase tracking-[0.2em] mb-1 sm:mb-2 block">
                                             {project.category}
                                         </span>
-                                        <h3 className="text-3xl font-display font-black text-gold-500 uppercase leading-none mb-4">
+                                        <h3 className="text-2xl sm:text-3xl font-display font-black text-gold-500 uppercase leading-none mb-3 sm:mb-4">
                                             {project.title}
                                         </h3>
-                                        <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-500 delay-100">
-                                            <p className="text-gray-300 font-medium text-sm border-l-2 border-gold-500 pl-3 mb-4">
+                                        <div className="h-auto opacity-100 sm:h-0 sm:opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-500 delay-100">
+                                            <p className="text-gray-300 font-medium text-xs sm:text-sm border-l-2 border-gold-500 pl-3 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-none">
                                                 {project.description || project.location}
                                             </p>
-                                            <span className="inline-flex items-center text-gold-500 font-black uppercase text-xs tracking-wider border-b-2 border-gold-500 pb-1">
-                                                Ver Proyecto <ArrowRight className="text-sm ml-1" size={16} />
+                                            <span className="inline-flex items-center text-gold-500 font-black uppercase text-[10px] sm:text-xs tracking-wider border-b-2 border-gold-500 pb-1">
+                                                Ver Proyecto <ArrowRight className="text-sm ml-1" size={14} />
                                             </span>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@ const ProjectsPage: React.FC = () => {
             {/* CTA Section */}
             <section className="bg-gold-500 py-24">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="font-display font-black text-4xl md:text-6xl text-black-900 mb-8 uppercase leading-tight tracking-tight">
+                    <h2 className="font-display font-black text-3xl sm:text-4xl md:text-6xl text-black-900 mb-8 uppercase leading-tight tracking-tight">
                         Transforma tu <br /> hogar hoy
                     </h2>
                     <div className="w-16 h-2 bg-black-900 mx-auto mb-10"></div>

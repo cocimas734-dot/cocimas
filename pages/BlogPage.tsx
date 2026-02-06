@@ -89,10 +89,10 @@ const BlogPage: React.FC = () => {
                             <span className="bg-gold-500 text-black-900 font-black uppercase text-xs tracking-[0.2em] px-3 py-1">Destacado</span>
                             <span className="text-gray-300 text-sm uppercase tracking-widest font-semibold border-l border-gold-500 pl-4">Octubre 24, 2023</span>
                         </div>
-                        <h1 className="font-display font-black text-5xl md:text-7xl text-white mb-6 uppercase leading-tight tracking-tight drop-shadow-2xl">
+                        <h1 className="font-display font-black text-3xl sm:text-5xl md:text-7xl text-white mb-6 uppercase leading-[1.1] tracking-tight drop-shadow-2xl">
                             La Revolución del <span className="text-gold-500 italic">Mármol Negro</span> en el Diseño 2024
                         </h1>
-                        <p className="text-white text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-light border-l-4 border-gold-500 pl-6">
+                        <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-light border-l-4 border-gold-500 pl-6">
                             Descubre cómo las texturas oscuras y los acabados metálicos están redefiniendo el lujo en los espacios residenciales contemporáneos.
                         </p>
                         <a className="group/btn inline-flex items-center space-x-3 text-gold-500 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
@@ -110,7 +110,7 @@ const BlogPage: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header with Filters */}
                     <div className="flex flex-wrap items-center justify-between mb-16 border-b border-gray-800 pb-6 gap-6">
-                        <h2 className="font-display font-bold text-3xl text-white uppercase tracking-tight">
+                        <h2 className="font-display font-bold text-2xl sm:text-3xl text-white uppercase tracking-tight">
                             Últimas <span className="text-gold-500">Noticias</span>
                         </h2>
                         <div className="flex flex-wrap gap-3">
@@ -119,8 +119,8 @@ const BlogPage: React.FC = () => {
                                     key={category}
                                     onClick={() => setActiveCategory(category)}
                                     className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border transition-all ${activeCategory === category
-                                            ? 'text-black-900 bg-gold-500 border-gold-500'
-                                            : 'text-gray-400 border-gray-800 hover:border-gold-500 hover:text-gold-500 hover:bg-black-900'
+                                        ? 'text-black-900 bg-gold-500 border-gold-500'
+                                        : 'text-gray-400 border-gray-800 hover:border-gold-500 hover:text-gold-500 hover:bg-black-900'
                                         }`}
                                 >
                                     {category}

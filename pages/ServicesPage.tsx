@@ -56,7 +56,7 @@ const ServicesPage: React.FC = () => {
                                     <div className="h-0.5 w-12 bg-gold-500"></div>
                                     <span className="text-gold-500 font-bold tracking-[0.2em] uppercase text-sm">Excelencia en Reformas</span>
                                 </div>
-                                <h1 className="font-display font-black text-5xl md:text-6xl text-white leading-tight mb-8">
+                                <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white leading-[1.1] mb-8">
                                     CALIDAD QUE <br />
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-500 to-yellow-200">PERDURA.</span>
                                 </h1>
@@ -116,7 +116,7 @@ const ServicesPage: React.FC = () => {
                 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
 
                 <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-                    <h2 className="font-display font-black text-4xl md:text-6xl text-black-900 mb-8 uppercase leading-tight tracking-tight">
+                    <h2 className="font-display font-black text-3xl sm:text-4xl md:text-6xl text-black-900 mb-8 uppercase leading-tight tracking-tight">
                         ¿Listo para elevar <br />tu estándar de vida?
                     </h2>
                     <p className="text-black-900/80 text-xl font-semibold mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -177,8 +177,8 @@ const ServicesPage: React.FC = () => {
                                         <span className="text-gold-500 text-xs font-bold uppercase tracking-wider mb-2 block">
                                             {project.category}
                                         </span>
-                                        <h3 className="text-white font-display font-bold text-3xl mb-2">{project.title}</h3>
-                                        <p className="text-gray-400 text-sm max-w-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                                        <h3 className="text-white font-display font-bold text-2xl sm:text-3xl mb-2">{project.title}</h3>
+                                        <p className="text-gray-400 text-xs sm:text-sm max-w-sm opacity-100 sm:opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
                                             {project.description}
                                         </p>
                                     </div>

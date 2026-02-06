@@ -96,7 +96,7 @@ const AboutPage: React.FC = () => {
                     <span className="inline-block py-1 px-3 border border-gold-500/50 text-gold-500 text-xs font-bold tracking-[0.3em] uppercase mb-6 bg-black-900/50 backdrop-blur-sm">
                         Sobre Nosotros
                     </span>
-                    <h1 className="font-display font-black text-5xl md:text-7xl lg:text-8xl text-gold-500 mb-6 uppercase tracking-tighter leading-none drop-shadow-2xl">
+                    <h1 className="font-display font-black text-4xl sm:text-7xl lg:text-8xl text-gold-500 mb-6 uppercase tracking-tighter leading-[1.1] drop-shadow-2xl">
                         Nuestra Pasión,<br />
                         <span className="text-white">Tu Espacio</span>
                     </h1>
@@ -149,10 +149,10 @@ const AboutPage: React.FC = () => {
                         <div className="space-y-12">
                             {timeline.map((item, index) => (
                                 <div key={index} className={`relative flex flex-col md:flex-row items-center md:justify-between group ${item.side === 'right' ? 'md:flex-row-reverse' : ''}`}>
-                                    <div className={`w-full md:w-5/12 ${item.side === 'left' ? 'text-left md:text-right md:pr-8' : 'text-left md:pl-8'} pl-8 md:pl-0`}>
-                                        <h3 className="text-3xl font-display font-bold text-gold-500 mb-1">{item.year}</h3>
-                                        <h4 className="text-white font-bold uppercase tracking-wider mb-2">{item.title}</h4>
-                                        <p className="text-gray-400 text-sm">{item.description}</p>
+                                    <div className={`w-full md:w-5/12 ${item.side === 'left' ? 'text-left md:text-right md:pr-8' : 'text-left md:pl-8'} pl-10 md:pl-0`}>
+                                        <h3 className="text-2xl sm:text-3xl font-display font-bold text-gold-500 mb-1">{item.year}</h3>
+                                        <h4 className="text-white font-bold uppercase tracking-wider mb-2 text-sm sm:text-base">{item.title}</h4>
+                                        <p className="text-gray-400 text-xs sm:text-sm">{item.description}</p>
                                     </div>
 
                                     <div className="absolute left-[-5px] md:left-1/2 md:-ml-[6px] w-[12px] h-[12px] rounded-full bg-black-900 border-2 border-gold-500 z-10 group-hover:scale-150 transition-transform duration-300 shadow-[0_0_20px_rgba(255,190,38,0.25)]"></div>
@@ -191,14 +191,14 @@ const AboutPage: React.FC = () => {
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-transparent to-transparent opacity-80"></div>
 
-                                    <div className="absolute bottom-0 left-0 w-full p-6">
-                                        <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                            <h3 className="text-white font-bold text-lg uppercase tracking-wider group-hover:text-gold-500 transition-colors">
+                                    <div className="absolute bottom-0 left-0 w-full p-4 sm:p-6">
+                                        <div className="transform translate-y-2 sm:translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                            <h3 className="text-white font-bold text-base sm:text-lg uppercase tracking-wider group-hover:text-gold-500 transition-colors">
                                                 {member.name}
                                             </h3>
-                                            <p className="text-gray-400 text-xs uppercase tracking-widest mt-1">{member.position}</p>
-                                            <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-300 mt-3">
-                                                <p className="text-gray-500 text-xs leading-snug">{member.description}</p>
+                                            <p className="text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest mt-1">{member.position}</p>
+                                            <div className="h-auto opacity-100 sm:h-0 sm:opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-300 mt-2 sm:mt-3">
+                                                <p className="text-gray-500 text-[10px] sm:text-xs leading-snug">{member.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -214,10 +214,10 @@ const AboutPage: React.FC = () => {
                 <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
 
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                    <h2 className="font-display font-black text-4xl md:text-6xl text-black-900 mb-6 uppercase leading-tight tracking-tight">
+                    <h2 className="font-display font-black text-3xl sm:text-4xl md:text-6xl text-black-900 mb-6 uppercase leading-tight tracking-tight">
                         ¿Listo para iniciar?
                     </h2>
-                    <p className="text-black-900 font-medium text-lg mb-10 max-w-2xl mx-auto">
+                    <p className="text-black-900 font-medium text-base sm:text-lg mb-10 max-w-2xl mx-auto">
                         Únete a nuestra lista de clientes exclusivos y transforma tu entorno.
                     </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-6">

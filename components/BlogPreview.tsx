@@ -36,10 +36,10 @@ const BlogPreview: React.FC = () => {
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-gray-800 pb-6">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6 border-b border-gray-800 pb-6">
                     <div>
                         <span className="text-gold-500 font-bold uppercase tracking-[0.2em] text-sm block mb-2">Últimas Noticias</span>
-                        <h2 className="font-display font-bold text-4xl text-white">
+                        <h2 className="font-display font-bold text-3xl sm:text-4xl text-white">
                             Blog <span className="text-gold-500">Cocimás</span>
                         </h2>
                     </div>
