@@ -16,13 +16,21 @@ export const CONTACT_INFO: ContactInfo = {
   address: "Calle Principal, Centro Industrial Inversiones Trinacria, Nave Unica Local Galpon Nro G-2, Urb Industrial Los Guayos, Carabobo, Zona Postal 2010",
   whatsapp: "https://wa.me/584122901033",
   instagram: "https://www.instagram.com/cocimas357",
-  tiktok: "https://www.tiktok.com/@cocimas357"
+  tiktok: "https://www.tiktok.com/@cocimas357",
+  phone: "0412-2901033",
+  email: "cocimas357@gmail.com",
+  social: {
+    facebook: "https://www.facebook.com/cocimas357",
+    instagram: "https://www.instagram.com/cocimas357",
+    linkedin: "https://www.linkedin.com/company/cocimas357"
+  }
 };
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Inicio', href: '#home' },
   { label: 'Servicios', href: '#services' },
   { label: 'Proyectos', href: '#portfolio' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Nosotros', href: '#about' },
   { label: 'Contacto', href: '#contact' },
 ];

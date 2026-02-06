@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black-900/95 backdrop-blur-md shadow-lg border-b border-white/10' : 'bg-transparent'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black-900/95 backdrop-blur-md shadow-lg border-b border-white/10' : 'bg-black-900/90 backdrop-blur-sm'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
 
@@ -52,6 +52,39 @@ const Navbar: React.FC = () => {
                     <Link
                       key={item.label}
                       to="/proyectos"
+                      className="text-gray-300 hover:text-gold-500 hover:scale-105 px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-all duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+                if (item.href === '#contact') {
+                  return (
+                    <Link
+                      key={item.label}
+                      to="/contacto"
+                      className="text-gray-300 hover:text-gold-500 hover:scale-105 px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-all duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+                if (item.href === '#about') {
+                  return (
+                    <Link
+                      key={item.label}
+                      to="/nosotros"
+                      className="text-gray-300 hover:text-gold-500 hover:scale-105 px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-all duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
+                if (item.href === '#blog') {
+                  return (
+                    <Link
+                      key={item.label}
+                      to="/blog"
                       className="text-gray-300 hover:text-gold-500 hover:scale-105 px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-all duration-200"
                     >
                       {item.label}
@@ -116,6 +149,42 @@ const Navbar: React.FC = () => {
                   <Link
                     key={item.label}
                     to="/proyectos"
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-300 hover:text-gold-500 block px-3 py-4 rounded-md text-base font-medium text-center border-b border-white/5"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              if (item.href === '#contact') {
+                return (
+                  <Link
+                    key={item.label}
+                    to="/contacto"
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-300 hover:text-gold-500 block px-3 py-4 rounded-md text-base font-medium text-center border-b border-white/5"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              if (item.href === '#about') {
+                return (
+                  <Link
+                    key={item.label}
+                    to="/nosotros"
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-300 hover:text-gold-500 block px-3 py-4 rounded-md text-base font-medium text-center border-b border-white/5"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              if (item.href === '#blog') {
+                return (
+                  <Link
+                    key={item.label}
+                    to="/blog"
                     onClick={() => setIsOpen(false)}
                     className="text-gray-300 hover:text-gold-500 block px-3 py-4 rounded-md text-base font-medium text-center border-b border-white/5"
                   >

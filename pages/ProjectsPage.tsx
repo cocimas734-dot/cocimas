@@ -74,7 +74,7 @@ const ProjectsPage: React.FC = () => {
                             <div className="absolute inset-0 bg-gold-500/20 blur-2xl -z-10 rounded-full"></div>
                             <img
                                 alt="Arquitectura moderna oscura"
-                                className="relative grayscale hover:grayscale-0 transition-all duration-700 rounded-sm w-full h-[500px] object-cover border-b-8 border-r-8 border-gold-500 shadow-2xl"
+                                className="relative transition-transform duration-700 hover:scale-105 rounded-sm w-full h-[500px] object-cover border-b-8 border-r-8 border-gold-500 shadow-2xl"
                                 src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800"
                             />
                         </div>
@@ -107,22 +107,22 @@ const ProjectsPage: React.FC = () => {
                             <article key={project.id} className="group relative h-[450px] cursor-pointer overflow-hidden border-4 border-gold-500 bg-gray-900">
                                 <img
                                     alt={project.title}
-                                    className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110 group-hover:opacity-100"
+                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     src={project.image}
                                 />
-                                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black-900 via-black-900/80 to-transparent transition-all duration-500 group-hover:bg-gold-500/95 group-hover:from-gold-500 group-hover:via-gold-500">
+                                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black-900 via-black-900/80 to-transparent">
                                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        <span className="text-gold-500 font-bold text-xs uppercase tracking-[0.2em] mb-2 block group-hover:text-black-900">
+                                        <span className="text-gold-500 font-bold text-xs uppercase tracking-[0.2em] mb-2 block">
                                             {project.category}
                                         </span>
-                                        <h3 className="text-3xl font-display font-black text-gold-500 uppercase leading-none mb-4 group-hover:text-black-900 transition-colors">
+                                        <h3 className="text-3xl font-display font-black text-gold-500 uppercase leading-none mb-4">
                                             {project.title}
                                         </h3>
                                         <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-500 delay-100">
-                                            <p className="text-black-900 font-medium text-sm border-l-2 border-black-900 pl-3 mb-4">
+                                            <p className="text-gray-300 font-medium text-sm border-l-2 border-gold-500 pl-3 mb-4">
                                                 {project.description || project.location}
                                             </p>
-                                            <span className="inline-flex items-center text-black-900 font-black uppercase text-xs tracking-wider border-b-2 border-black-900 pb-1">
+                                            <span className="inline-flex items-center text-gold-500 font-black uppercase text-xs tracking-wider border-b-2 border-gold-500 pb-1">
                                                 Ver Proyecto <ArrowRight className="text-sm ml-1" size={16} />
                                             </span>
                                         </div>

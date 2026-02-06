@@ -31,4 +31,11 @@ export interface ContactInfo {
   whatsapp: string;
   instagram: string;
   tiktok: string;
+  phone: string; // Alias for phonePrimary
+  email: string; // Alias for emailPrimary
+  social: {
+    facebook: string;
+    instagram: string;
+    linkedin: string;
+  };
 }
