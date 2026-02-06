@@ -1,15 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BlogPreview from './components/BlogPreview';
+import AboutPreview from './components/AboutPreview';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
+import ServicesPage from './pages/ServicesPage';
 
 function HomePage() {
   return (
@@ -17,8 +21,10 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-        <Services />
         <Portfolio />
+        <Services />
+        <BlogPreview />
+        <AboutPreview />
         <Contact />
       </main>
       <Footer />
@@ -36,8 +42,10 @@ function App() {
           <Route path="/contacto" element={<ContactPage />} />
           <Route path="/nosotros" element={<AboutPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/servicios" element={<ServicesPage />} />
         </Routes>
       </div>
+      <Analytics />
     </Router>
   );
 }

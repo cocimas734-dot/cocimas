@@ -91,6 +91,17 @@ const Navbar: React.FC = () => {
                     </Link>
                   );
                 }
+                if (item.href === '#services') {
+                  return (
+                    <Link
+                      key={item.label}
+                      to="/servicios"
+                      className="text-gray-300 hover:text-gold-500 hover:scale-105 px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider transition-all duration-200"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                }
                 return (
                   <a
                     key={item.label}
@@ -185,6 +196,18 @@ const Navbar: React.FC = () => {
                   <Link
                     key={item.label}
                     to="/blog"
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-300 hover:text-gold-500 block px-3 py-4 rounded-md text-base font-medium text-center border-b border-white/5"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              if (item.href === '#services') {
+                return (
+                  <Link
+                    key={item.label}
+                    to="/servicios"
                     onClick={() => setIsOpen(false)}
                     className="text-gray-300 hover:text-gold-500 block px-3 py-4 rounded-md text-base font-medium text-center border-b border-white/5"
                   >

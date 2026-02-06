@@ -28,8 +28,8 @@ export const CONTACT_INFO: ContactInfo = {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Inicio', href: '#home' },
-  { label: 'Servicios', href: '#services' },
   { label: 'Proyectos', href: '#portfolio' },
+  { label: 'Servicios', href: '#services' },
   { label: 'Blog', href: '#blog' },
   { label: 'Nosotros', href: '#about' },
   { label: 'Contacto', href: '#contact' },
