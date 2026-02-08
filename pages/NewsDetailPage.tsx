@@ -76,9 +76,24 @@ const NewsDetailPage: React.FC = () => {
                             </div>
                         </div>
 
-                        <h1 className="font-display font-black text-2xl sm:text-4xl md:text-5xl text-white uppercase leading-tight tracking-tight drop-shadow-2xl">
-                            {article.titulo}
-                        </h1>
+                        {(() => {
+                            const wordCount = (article.titulo || '').split(' ').length;
+                            const isLong = wordCount > 5;
+
+                            if (isLong) {
+                                return (
+                                    <h1 className="font-outfit font-bold text-3xl sm:text-4xl md:text-5xl text-white leading-[1.1] tracking-tight drop-shadow-2xl max-w-3xl">
+                                        {article.titulo}
+                                    </h1>
+                                );
+                            } else {
+                                return (
+                                    <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-white uppercase leading-tight tracking-tight drop-shadow-2xl">
+                                        {article.titulo}
+                                    </h1>
+                                );
+                            }
+                        })()}
                     </div>
                 </div>
             </header>
