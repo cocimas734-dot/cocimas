@@ -76,7 +76,7 @@ const NewsDetailPage: React.FC = () => {
                             </div>
                         </div>
 
-                        <h1 className="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white uppercase leading-tight tracking-tight drop-shadow-2xl">
+                        <h1 className="font-display font-black text-2xl sm:text-4xl md:text-5xl text-white uppercase leading-tight tracking-tight drop-shadow-2xl">
                             {article.titulo}
                         </h1>
                     </div>
@@ -98,7 +98,20 @@ const NewsDetailPage: React.FC = () => {
                     {/* Main Content */}
                     <div className="prose prose-invert prose-gold max-w-none">
                         <div className="text-gray-300 text-lg leading-[1.8] font-light space-y-8 whitespace-pre-wrap">
-                            {article.contenido}
+                            {article.contenido && article.contenido.split('\n').map((line: string, index: number) => {
+                                // Detectar subtítulos como ***Texto***
+                                const subtitleMatch = line.match(/\*\*\*(.*?)\*\*\*/);
+                                if (subtitleMatch) {
+                                    return (
+                                        <div key={index} className="pt-4 pb-2">
+                                            <span className="text-gold-500 font-bold italic text-xl block">
+                                                {subtitleMatch[1]}
+                                            </span>
+                                        </div>
+                                    );
+                                }
+                                return <p key={index}>{line}</p>;
+                            })}
                         </div>
                     </div>
 
