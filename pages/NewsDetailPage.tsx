@@ -51,7 +51,7 @@ const NewsDetailPage: React.FC = () => {
             <Navbar />
 
             {/* Article Hero */}
-            <header className="relative w-full h-[60vh] overflow-hidden">
+            <header className="relative w-full h-[60vh] overflow-hidden pt-20">
                 <img
                     alt={article.titulo}
                     className="w-full h-full object-cover"
