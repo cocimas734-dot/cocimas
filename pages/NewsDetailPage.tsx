@@ -51,15 +51,18 @@ const NewsDetailPage: React.FC = () => {
             <Navbar />
 
             {/* Article Hero */}
-            <header className="relative w-full h-[60vh] overflow-hidden pt-20">
-                <img
-                    alt={article.titulo}
-                    className="w-full h-full object-cover"
-                    src={article.imagen_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=2000'}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-black-900/40 to-transparent"></div>
+            <header className="relative w-full min-h-[70vh] flex items-end pt-32 pb-16 overflow-hidden">
+                <div className="absolute inset-0 z-0">
+                    <img
+                        alt={article.titulo}
+                        className="w-full h-full object-cover"
+                        src={article.imagen_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=2000'}
+                    />
+                    <div className="absolute inset-0 bg-black-900/40"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black-900 via-black-900/20 to-transparent"></div>
+                </div>
 
-                <div className="absolute bottom-0 w-full pb-12">
+                <div className="relative z-10 w-full">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                         <Link to="/blog" className="inline-flex items-center text-gold-500 hover:text-white transition-colors mb-8 group">
                             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
