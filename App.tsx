@@ -44,6 +44,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<NewsDetailPage />} />
           <Route path="/servicios" element={<ServicesPage />} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </div>
     </Router>
