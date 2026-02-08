@@ -1,62 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
+import { getPublishedNews } from '../services/supabase';
 
 const BlogPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState('Todos');
+    const [articles, setArticles] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const categories = ['Todos', 'Tendencias', 'Materiales', 'Cocinas', 'Tecnología', 'Industrial', 'Arquitectura'];
 
-    const articles = [
-        {
-            id: 1,
-            category: 'Tendencias',
-            date: '22 OCT, 2023',
-            title: 'Minimalismo Oscuro: Menos es Más',
-            description: 'Analizamos cómo la eliminación de elementos superfluos y el uso de paletas negras crean espacios de calma absoluta.',
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 2,
-            category: 'Materiales',
-            date: '18 OCT, 2023',
-            title: 'El Regreso del Concreto Aparente',
-            description: 'Una mirada profunda a la brutalidad estética y la versatilidad del concreto en las villas modernas de lujo.',
-            image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 3,
-            category: 'Tecnología',
-            date: '15 OCT, 2023',
-            title: 'Domótica: El Hogar del Futuro',
-            description: 'Sistemas integrados que responden a tu voz. La tecnología invisible que eleva el confort a otro nivel.',
-            image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 4,
-            category: 'Cocinas',
-            date: '10 OCT, 2023',
-            title: 'Islas de Cocina Esculturales',
-            description: 'Transformando el corazón del hogar con piezas monolíticas que funcionan como arte funcional.',
-            image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 5,
-            category: 'Industrial',
-            date: '05 OCT, 2023',
-            title: 'Reutilización de Espacios Industriales',
-            description: 'El arte de convertir antiguas naves en lofts de lujo conservando la esencia del acero y el ladrillo.',
-            image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 6,
-            category: 'Arquitectura',
-            date: '01 OCT, 2023',
-            title: 'La Nueva Era Prefabricada',
-            description: 'Velocidad y precisión. Las casas modulares de alta gama rompen con los prejuicios tradicionales.',
-            image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800'
-        }
-    ];
+    useEffect(() => {
+        const fetchNews = async () => {
+            setLoading(true);
+            const data = await getPublishedNews();
+            const formattedArticles = data.map((item: any) => ({
+                id: item.id,
+                category: item.categoria || 'Tendencias',
+                date: new Date(item.created_at).toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }).toUpperCase(),
+                title: item.titulo,
+                description: item.resumen,
+                image: item.imagen_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800'
+            }));
+            setArticles(formattedArticles);
+            setLoading(false);
+        };
+
+        fetchNews();
+    }, []);
 
     const filteredArticles = activeCategory === 'Todos'
         ? articles
@@ -95,10 +71,12 @@ const BlogPage: React.FC = () => {
                         <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-light border-l-4 border-gold-500 pl-6">
                             Descubre cómo las texturas oscuras y los acabados metálicos están redefiniendo el lujo en los espacios residenciales contemporáneos.
                         </p>
-                        <a className="group/btn inline-flex items-center space-x-3 text-gold-500 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
-                            <span className="border-b-2 border-gold-500 group-hover/btn:border-white pb-1 transition-colors">Leer Artículo Completo</span>
-                            <span className="group-hover/btn:translate-x-2 transition-transform">→</span>
-                        </a>
+                        {articles.length > 0 && (
+                            <Link to={`/blog/${articles[0].id}`} className="group/btn inline-flex items-center space-x-3 text-gold-500 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
+                                <span className="border-b-2 border-gold-500 group-hover/btn:border-white pb-1 transition-colors">Leer Artículo Completo</span>
+                                <span className="group-hover/btn:translate-x-2 transition-transform">→</span>
+                            </Link>
+                        )}
                     </div>
                 </div>
             </header>
@@ -130,42 +108,53 @@ const BlogPage: React.FC = () => {
                     </div>
 
                     {/* Articles Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {filteredArticles.map((article) => (
-                            <article
-                                key={article.id}
-                                className="group relative flex flex-col h-full bg-gray-900/50 border border-gray-800 hover:border-gold-500/60 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,190,38,0.3)] hover:-translate-y-2"
-                            >
-                                <div className="relative h-64 overflow-hidden">
-                                    <span className="absolute top-4 left-4 z-10 bg-black-900/80 backdrop-blur border border-gold-500 text-gold-500 text-[10px] font-bold uppercase tracking-widest px-3 py-1">
-                                        {article.category}
-                                    </span>
-                                    <img
-                                        alt={article.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                        src={article.image}
-                                    />
-                                </div>
+                    {loading ? (
+                        <div className="flex justify-center items-center py-20">
+                            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gold-500"></div>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                            {filteredArticles.map((article) => (
+                                <article
+                                    key={article.id}
+                                    className="group relative flex flex-col h-full bg-gray-900/50 border border-gray-800 hover:border-gold-500/60 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,190,38,0.3)] hover:-translate-y-2"
+                                >
+                                    <Link to={`/blog/${article.id}`} className="relative h-64 overflow-hidden block">
+                                        <span className="absolute top-4 left-4 z-10 bg-black-900/80 backdrop-blur border border-gold-500 text-gold-500 text-[10px] font-bold uppercase tracking-widest px-3 py-1">
+                                            {article.category}
+                                        </span>
+                                        <img
+                                            alt={article.title}
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            src={article.image}
+                                        />
+                                    </Link>
 
-                                <div className="flex-1 p-8 flex flex-col">
-                                    <div className="mb-4 text-xs text-gray-500 font-mono flex items-center gap-2">
-                                        <span className="text-sm text-gold-500">🕒</span> {article.date}
+                                    <div className="flex-1 p-8 flex flex-col">
+                                        <div className="mb-4 text-xs text-gray-500 font-mono flex items-center gap-2">
+                                            <span className="text-sm text-gold-500">🕒</span> {article.date}
+                                        </div>
+                                        <Link to={`/blog/${article.id}`}>
+                                            <h3 className="font-display font-bold text-2xl text-gold-500 mb-4 leading-tight group-hover:underline decoration-gold-500 underline-offset-4">
+                                                {article.title}
+                                            </h3>
+                                        </Link>
+                                        <p className="text-white font-light text-sm leading-relaxed mb-6 flex-1 opacity-90">
+                                            {article.description}
+                                        </p>
+                                        <div className="mt-auto pt-6 border-t border-gray-800 flex justify-between items-center">
+                                            <Link
+                                                to={`/blog/${article.id}`}
+                                                className="text-white text-xs font-bold uppercase tracking-widest group-hover:text-gold-500 transition-colors flex items-center gap-1"
+                                            >
+                                                Leer Más <span className="transition-transform group-hover:translate-x-1">→</span>
+                                            </Link>
+                                        </div>
                                     </div>
-                                    <h3 className="font-display font-bold text-2xl text-gold-500 mb-4 leading-tight group-hover:underline decoration-gold-500 underline-offset-4">
-                                        {article.title}
-                                    </h3>
-                                    <p className="text-white font-light text-sm leading-relaxed mb-6 flex-1 opacity-90">
-                                        {article.description}
-                                    </p>
-                                    <div className="mt-auto pt-6 border-t border-gray-800 flex justify-between items-center">
-                                        <a className="text-white text-xs font-bold uppercase tracking-widest group-hover:text-gold-500 transition-colors flex items-center gap-1">
-                                            Leer Más <span className="transition-transform group-hover:translate-x-1">→</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
+                                </article>
+                            ))}
+                        </div>
+                    )}
 
                     {/* Pagination */}
                     <div className="mt-20 flex justify-center space-x-2">

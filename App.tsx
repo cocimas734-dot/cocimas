@@ -13,6 +13,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import ServicesPage from './pages/ServicesPage';
+import NewsDetailPage from './pages/NewsDetailPage';
 
 function HomePage() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/contacto" element={<ContactPage />} />
           <Route path="/nosotros" element={<AboutPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<NewsDetailPage />} />
           <Route path="/servicios" element={<ServicesPage />} />
         </Routes>
       </div>

@@ -1,34 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { getPublishedNews } from '../services/supabase';
 
 const BlogPreview: React.FC = () => {
-    const featuredPosts = [
-        {
-            id: 1,
-            category: 'Tendencias',
-            date: '22 OCT, 2023',
-            title: 'Minimalismo Oscuro: Menos es Más',
-            excerpt: 'Analizamos cómo la eliminación de elementos superfluos y el uso de paletas negras crean espacios de calma absoluta.',
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 2,
-            category: 'Materiales',
-            date: '18 OCT, 2023',
-            title: 'El Regreso del Concreto Aparente',
-            excerpt: 'Una mirada profunda a la brutalidad estética y la versatilidad del concreto en las villas modernas de lujo.',
-            image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            id: 3,
-            category: 'Cocinas',
-            date: '10 OCT, 2023',
-            title: 'Islas de Cocina Esculturales',
-            excerpt: 'Transformando el corazón del hogar con piezas monolíticas que funcionan como arte funcional.',
-            image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800'
-        }
-    ];
+    const [featuredPosts, setFeaturedPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchNews = async () => {
+            const data = await getPublishedNews();
+            const formattedPosts = data.slice(0, 3).map((item: any) => ({
+                id: item.id,
+                category: item.categoria || 'Tendencias',
+                date: new Date(item.created_at).toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }).toUpperCase(),
+                title: item.titulo,
+                excerpt: item.resumen,
+                image: item.imagen_url || 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800'
+            }));
+            setFeaturedPosts(formattedPosts);
+            setLoading(false);
+        };
+
+        fetchNews();
+    }, []);
 
     return (
         <section className="py-24 bg-black-900 relative overflow-hidden">
@@ -53,45 +52,56 @@ const BlogPreview: React.FC = () => {
                 </div>
 
                 {/* Posts Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {featuredPosts.map((post) => (
-                        <article
-                            key={post.id}
-                            className="group relative flex flex-col h-full bg-gray-900/50 border border-gray-800 hover:border-gold-500/60 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,190,38,0.3)] hover:-translate-y-2"
-                        >
-                            <div className="relative h-64 overflow-hidden">
-                                <span className="absolute top-4 left-4 z-10 bg-black-900/80 backdrop-blur border border-gold-500 text-gold-500 text-[10px] font-bold uppercase tracking-widest px-3 py-1">
-                                    {post.category}
-                                </span>
-                                <img
-                                    alt={post.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    src={post.image}
-                                />
-                            </div>
+                {loading ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[1, 2, 3].map((i) => (
+                            <div key={i} className="h-96 bg-gray-900/50 border border-gray-800 animate-pulse"></div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {featuredPosts.map((post) => (
+                            <article
+                                key={post.id}
+                                className="group relative flex flex-col h-full bg-gray-900/50 border border-gray-800 hover:border-gold-500/60 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,190,38,0.3)] hover:-translate-y-2"
+                            >
+                                <Link to={`/blog/${post.id}`} className="relative h-64 overflow-hidden block">
+                                    <span className="absolute top-4 left-4 z-10 bg-black-900/80 backdrop-blur border border-gold-500 text-gold-500 text-[10px] font-bold uppercase tracking-widest px-3 py-1">
+                                        {post.category}
+                                    </span>
+                                    <img
+                                        alt={post.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        src={post.image}
+                                    />
+                                </Link>
 
-                            <div className="flex-1 p-6 flex flex-col">
-                                <div className="mb-3 text-xs text-gray-500 font-mono flex items-center gap-2">
-                                    <span className="text-sm text-gold-500">🕒</span> {post.date}
-                                </div>
-                                <h3 className="font-display font-bold text-xl text-gold-500 mb-3 leading-tight group-hover:underline decoration-gold-500 underline-offset-4">
-                                    {post.title}
-                                </h3>
-                                <p className="text-gray-400 font-light text-sm leading-relaxed mb-4 flex-1">
-                                    {post.excerpt}
-                                </p>
-                                <div className="mt-auto pt-4 border-t border-gray-800">
-                                    <Link
-                                        to="/blog"
-                                        className="text-white text-xs font-bold uppercase tracking-widest group-hover:text-gold-500 transition-colors flex items-center gap-1"
-                                    >
-                                        Leer Más <span className="transition-transform group-hover:translate-x-1">→</span>
+                                <div className="flex-1 p-6 flex flex-col">
+                                    <div className="mb-3 text-xs text-gray-500 font-mono flex items-center gap-2">
+                                        <span className="text-sm text-gold-500">🕒</span> {post.date}
+                                    </div>
+                                    <Link to={`/blog/${post.id}`}>
+                                        <h3 className="font-display font-bold text-xl text-gold-500 mb-3 leading-tight group-hover:underline decoration-gold-500 underline-offset-4">
+                                            {post.title}
+                                        </h3>
                                     </Link>
+                                    <p className="text-gray-400 font-light text-sm leading-relaxed mb-4 flex-1">
+                                        {post.excerpt}
+                                    </p>
+                                    <div className="mt-auto pt-4 border-t border-gray-800">
+                                        <Link
+                                            to={`/blog/${post.id}`}
+                                            className="text-white text-xs font-bold uppercase tracking-widest group-hover:text-gold-500 transition-colors flex items-center gap-1"
+                                        >
+                                            Leer Más <span className="transition-transform group-hover:translate-x-1">→</span>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    ))}
-                </div>
+                            </article>
+                        ))}
+                    </div>
+                )}
+
             </div>
         </section>
     );
