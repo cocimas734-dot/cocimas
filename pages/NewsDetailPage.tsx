@@ -51,7 +51,7 @@ const NewsDetailPage: React.FC = () => {
             <Navbar />
 
             {/* Article Hero */}
-            <header className="relative w-full min-h-[70vh] flex items-end pt-32 pb-16 overflow-hidden">
+            <header className="relative w-full min-h-[60vh] flex items-end pt-24 pb-12 overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
                         alt={article.titulo}
@@ -64,11 +64,6 @@ const NewsDetailPage: React.FC = () => {
 
                 <div className="relative z-10 w-full">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <Link to="/blog" className="inline-flex items-center text-gold-500 hover:text-white transition-colors mb-8 group">
-                            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                            <span className="text-xs font-bold uppercase tracking-widest">Volver al Blog</span>
-                        </Link>
-
                         <div className="flex flex-wrap items-center gap-4 mb-6">
                             <span className="bg-gold-500 text-black-900 font-black uppercase text-[10px] tracking-[0.2em] px-3 py-1">
                                 {article.categoria || 'Tendencias'}
@@ -163,6 +158,14 @@ const NewsDetailPage: React.FC = () => {
                             className="inline-block bg-gold-500 text-black-900 font-black uppercase tracking-widest px-10 py-4 hover:bg-white transition-all shadow-lg hover:shadow-[0_0_30px_rgba(255,190,38,0.4)]"
                         >
                             Solicitar Asesoría VIP
+                        </Link>
+                    </div>
+
+                    {/* Back to Blog at bottom */}
+                    <div className="mt-16 text-center">
+                        <Link to="/blog" className="inline-flex items-center text-gray-500 hover:text-gold-500 transition-colors group">
+                            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                            <span className="text-xs font-bold uppercase tracking-widest">Volver a todas las noticias</span>
                         </Link>
                     </div>
                 </div>
