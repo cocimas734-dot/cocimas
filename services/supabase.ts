@@ -36,6 +36,7 @@ export const getNewsById = async (id: string | number) => {
     return data;
 };
 
+
 export const subscribeToNewsletter = async (email: string) => {
     const { data, error } = await supabase
         .from('suscriptores')
@@ -51,3 +52,23 @@ export const subscribeToNewsletter = async (email: string) => {
 
     return { success: true, message: '¡Te has suscrito correctamente!' };
 };
+
+export const sendContactMessage = async (data: { firstName: string, lastName: string, email: string, phone: string, message: string }) => {
+    const { error } = await supabase
+        .from('contactos')
+        .insert([{
+            first_name: data.firstName,
+            last_name: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            message: data.message
+        }]);
+
+    if (error) {
+        console.error('Error sending contact message:', error);
+        return { success: false, message: 'Ocurrió un error al enviar tu mensaje. Por favor, intenta de nuevo.' };
+    }
+
+    return { success: true, message: '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.' };
+};
+

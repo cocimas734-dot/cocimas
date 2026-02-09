@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { CONTACT_INFO } from '../constants';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { sendContactMessage } from '../services/supabase';
+
 
 const ContactPage: React.FC = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +14,9 @@ const ContactPage: React.FC = () => {
         message: ''
     });
 
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [statusMessage, setStatusMessage] = useState('');
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
             ...formData,
@@ -19,12 +24,34 @@ const ContactPage: React.FC = () => {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Aquí se puede integrar con un servicio de email o backend
-        console.log('Form submitted:', formData);
-        alert('Mensaje enviado. Nos pondremos en contacto pronto.');
+        setStatus('loading');
+
+        try {
+            const result = await sendContactMessage(formData);
+
+            if (result.success) {
+                setStatus('success');
+                setStatusMessage(result.message);
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: '',
+                    message: ''
+                });
+            } else {
+                setStatus('error');
+                setStatusMessage(result.message);
+            }
+        } catch (error) {
+            console.error('Submit error:', error);
+            setStatus('error');
+            setStatusMessage('Ocurrió un error inesperado. Por favor, intenta de nuevo.');
+        }
     };
+
 
     return (
         <div className="min-h-screen bg-black-900 text-gray-100 font-sans">
@@ -225,11 +252,25 @@ const ContactPage: React.FC = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full bg-gold-500 text-black-900 font-display font-black uppercase text-lg py-4 px-8 tracking-[0.2em] hover:bg-white transition-all duration-300 shadow-[0_0_15px_rgba(255,190,38,0.4)] hover:shadow-[0_0_25px_rgba(255,190,38,0.6)] flex items-center justify-center group"
+                                    disabled={status === 'loading'}
+                                    className={`w-full ${status === 'loading' ? 'bg-gray-700 cursor-not-allowed' : 'bg-gold-500 hover:bg-white'} text-black-900 font-display font-black uppercase text-lg py-4 px-8 tracking-[0.2em] transition-all duration-300 shadow-[0_0_15px_rgba(255,190,38,0.4)] hover:shadow-[0_0_25px_rgba(255,190,38,0.6)] flex items-center justify-center group`}
                                 >
-                                    Enviar Mensaje
-                                    <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                                    {status === 'loading' ? 'Enviando...' : 'Enviar Mensaje'}
+                                    <span className={`ml-2 ${status === 'loading' ? 'animate-pulse' : 'group-hover:translate-x-2'} transition-transform`}>→</span>
                                 </button>
+
+                                {status === 'success' && (
+                                    <div className="p-4 bg-green-500/20 border border-green-500 text-green-400 font-bold text-center animate-fade-in">
+                                        {statusMessage}
+                                    </div>
+                                )}
+
+                                {status === 'error' && (
+                                    <div className="p-4 bg-red-500/20 border border-red-500 text-red-400 font-bold text-center animate-fade-in">
+                                        {statusMessage}
+                                    </div>
+                                )}
+
                             </form>
                         </div>
                     </div>
