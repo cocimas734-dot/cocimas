@@ -148,20 +148,14 @@ const ProjectsPage: React.FC = () => {
                         Transforma tu <br /> hogar hoy
                     </h2>
                     <div className="w-16 h-2 bg-black-900 mx-auto mb-10"></div>
-                    <div className="flex flex-col sm:flex-row justify-center gap-6">
+                    <div className="flex flex-col sm:flex-row justify-center">
                         <a
-                            className="bg-black-900 text-white font-bold py-5 px-10 rounded-none uppercase tracking-widest shadow-2xl hover:bg-black-800 transition transform hover:-translate-y-1 text-center"
+                            className="bg-black-900 text-white font-bold py-5 px-12 rounded-none uppercase tracking-widest shadow-2xl hover:bg-black-800 transition transform hover:-translate-y-1 text-center"
                             href={CONTACT_INFO.whatsapp}
                             target="_blank"
                             rel="noreferrer"
                         >
-                            Solicitar Presupuesto
-                        </a>
-                        <a
-                            className="bg-transparent border-2 border-black-900 text-black-900 font-bold py-5 px-10 rounded-none uppercase tracking-widest hover:bg-black-900 hover:text-white transition text-center"
-                            href="#contact"
-                        >
-                            Agendar Cita
+                            Solicitar Presupuesto por WhatsApp
                         </a>
                     </div>
                 </div>
