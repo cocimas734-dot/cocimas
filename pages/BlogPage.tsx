@@ -8,6 +8,8 @@ const BlogPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState('Todos');
     const [articles, setArticles] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const ARTICLES_PER_PAGE = 6;
 
     const categories = ['Todos', 'Tendencias (Moda Actual)', 'Evergreen (Vigencia)', 'SEO Local (Posicionamiento Regional)'];
 
@@ -37,6 +39,17 @@ const BlogPage: React.FC = () => {
     const filteredArticles = activeCategory === 'Todos'
         ? articles
         : articles.filter(article => article.category.toLowerCase() === activeCategory.toLowerCase());
+
+    const totalPages = Math.ceil(filteredArticles.length / ARTICLES_PER_PAGE);
+    const paginatedArticles = filteredArticles.slice(
+        (currentPage - 1) * ARTICLES_PER_PAGE,
+        currentPage * ARTICLES_PER_PAGE
+    );
+
+    const handleCategoryChange = (category: string) => {
+        setActiveCategory(category);
+        setCurrentPage(1);
+    };
 
     const handleSubscribe = (e: React.FormEvent) => {
         e.preventDefault();
@@ -97,14 +110,14 @@ const BlogPage: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header with Filters */}
                     <div className="flex flex-wrap items-center justify-between mb-16 border-b border-gray-800 pb-6 gap-6">
-                        <h2 className="font-display font-bold text-2xl sm:text-3xl text-white uppercase tracking-tight">
+                        <h2 id="articles-header" className="font-display font-bold text-2xl sm:text-3xl text-white uppercase tracking-tight">
                             Últimas <span className="text-gold-500">Noticias</span>
                         </h2>
                         <div className="flex flex-wrap gap-3">
                             {categories.map((category) => (
                                 <button
                                     key={category}
-                                    onClick={() => setActiveCategory(category)}
+                                    onClick={() => handleCategoryChange(category)}
                                     className={`px-4 py-2 text-xs font-bold uppercase tracking-widest border transition-all ${activeCategory === category
                                         ? 'text-black-900 bg-gold-500 border-gold-500'
                                         : 'text-gray-400 border-gray-800 hover:border-gold-500 hover:text-gold-500 hover:bg-black-900'
@@ -123,7 +136,7 @@ const BlogPage: React.FC = () => {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                            {filteredArticles.map((article) => (
+                            {paginatedArticles.map((article) => (
                                 <article
                                     key={article.id}
                                     className="group relative flex flex-col h-full bg-gray-900/50 border border-gray-800 hover:border-gold-500/60 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,190,38,0.3)] hover:-translate-y-2"
@@ -166,20 +179,36 @@ const BlogPage: React.FC = () => {
                     )}
 
                     {/* Pagination */}
-                    <div className="mt-20 flex justify-center space-x-2">
-                        <button className="w-12 h-12 flex items-center justify-center border border-gold-500 text-black-900 bg-gold-500 font-bold transition-transform hover:-translate-y-1">
-                            1
-                        </button>
-                        <button className="w-12 h-12 flex items-center justify-center border border-gray-800 text-gray-400 hover:border-gold-500 hover:text-gold-500 transition-all">
-                            2
-                        </button>
-                        <button className="w-12 h-12 flex items-center justify-center border border-gray-800 text-gray-400 hover:border-gold-500 hover:text-gold-500 transition-all">
-                            3
-                        </button>
-                        <button className="w-12 h-12 flex items-center justify-center border border-gray-800 text-gray-400 hover:border-gold-500 hover:text-gold-500 transition-all">
-                            →
-                        </button>
-                    </div>
+                    {totalPages > 1 && (
+                        <div className="mt-20 flex justify-center space-x-2">
+                            {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                                <button
+                                    key={page}
+                                    onClick={() => {
+                                        setCurrentPage(page);
+                                        window.scrollTo({ top: document.getElementById('articles-header')?.offsetTop ? (document.getElementById('articles-header')!.offsetTop - 100) : 0, behavior: 'smooth' });
+                                    }}
+                                    className={`w-12 h-12 flex items-center justify-center border font-bold transition-all ${currentPage === page
+                                        ? 'bg-gold-500 text-black-900 border-gold-500'
+                                        : 'border-gray-800 text-gray-400 hover:border-gold-500 hover:text-gold-500'
+                                        }`}
+                                >
+                                    {page}
+                                </button>
+                            ))}
+                            {currentPage < totalPages && (
+                                <button
+                                    onClick={() => {
+                                        setCurrentPage(prev => prev + 1);
+                                        window.scrollTo({ top: document.getElementById('articles-header')?.offsetTop ? (document.getElementById('articles-header')!.offsetTop - 100) : 0, behavior: 'smooth' });
+                                    }}
+                                    className="w-12 h-12 flex items-center justify-center border border-gray-800 text-gray-400 hover:border-gold-500 hover:text-gold-500 transition-all font-bold"
+                                >
+                                    →
+                                </button>
+                            )}
+                        </div>
+                    )}
                 </div>
             </section>
 
