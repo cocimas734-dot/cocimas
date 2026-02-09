@@ -14,6 +14,7 @@ import AboutPage from './pages/AboutPage';
 import BlogPage from './pages/BlogPage';
 import ServicesPage from './pages/ServicesPage';
 import NewsDetailPage from './pages/NewsDetailPage';
+import ScrollToTop from './components/ScrollToTop';
 
 function HomePage() {
   return (
@@ -35,6 +36,7 @@ function HomePage() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-black-900 text-gray-100 font-sans selection:bg-gold-500 selection:text-black-900">
         <Routes>
           <Route path="/" element={<HomePage />} />
