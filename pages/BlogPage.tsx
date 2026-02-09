@@ -61,21 +61,29 @@ const BlogPage: React.FC = () => {
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center pt-20">
                     <div className="max-w-3xl">
-                        <div className="flex items-center space-x-4 mb-6">
-                            <span className="bg-gold-500 text-black-900 font-black uppercase text-xs tracking-[0.2em] px-3 py-1">Destacado</span>
-                            <span className="text-gray-300 text-sm uppercase tracking-widest font-semibold border-l border-gold-500 pl-4">Octubre 24, 2023</span>
-                        </div>
-                        <h1 className="font-display font-black text-3xl sm:text-5xl md:text-7xl text-white mb-6 uppercase leading-[1.1] tracking-tight drop-shadow-2xl">
-                            La Revolución del <span className="text-gold-500 italic">Mármol Negro</span> en el Diseño 2024
-                        </h1>
-                        <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-light border-l-4 border-gold-500 pl-6">
-                            Descubre cómo las texturas oscuras y los acabados metálicos están redefiniendo el lujo en los espacios residenciales contemporáneos.
-                        </p>
-                        {articles.length > 0 && (
-                            <Link to={`/blog/${articles[0].id}`} className="group/btn inline-flex items-center space-x-3 text-gold-500 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
-                                <span className="border-b-2 border-gold-500 group-hover/btn:border-white pb-1 transition-colors">Leer Artículo Completo</span>
-                                <span className="group-hover/btn:translate-x-2 transition-transform">→</span>
-                            </Link>
+                        {articles.length > 0 ? (
+                            <>
+                                <div className="flex items-center space-x-4 mb-6">
+                                    <span className="bg-gold-500 text-black-900 font-black uppercase text-xs tracking-[0.2em] px-3 py-1">Destacado</span>
+                                    <span className="text-gray-300 text-sm uppercase tracking-widest font-semibold border-l border-gold-500 pl-4">{articles[0].date}</span>
+                                </div>
+                                <h1 className="font-display font-black text-3xl sm:text-5xl md:text-7xl text-white mb-6 uppercase leading-[1.1] tracking-tight drop-shadow-2xl">
+                                    {articles[0].title}
+                                </h1>
+                                <p className="text-white text-base sm:text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-light border-l-4 border-gold-500 pl-6">
+                                    {articles[0].description}
+                                </p>
+                                <Link to={`/blog/${articles[0].id}`} className="group/btn inline-flex items-center space-x-3 text-gold-500 font-bold uppercase tracking-widest hover:text-white transition-colors cursor-pointer">
+                                    <span className="border-b-2 border-gold-500 group-hover/btn:border-white pb-1 transition-colors">Leer Artículo Completo</span>
+                                    <span className="group-hover/btn:translate-x-2 transition-transform">→</span>
+                                </Link>
+                            </>
+                        ) : (
+                            <div className="animate-pulse">
+                                <div className="h-8 bg-gray-800 w-32 mb-6"></div>
+                                <div className="h-16 bg-gray-800 w-full mb-6"></div>
+                                <div className="h-24 bg-gray-800 w-2/3 mb-10"></div>
+                            </div>
                         )}
                     </div>
                 </div>
