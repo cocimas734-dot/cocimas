@@ -9,7 +9,7 @@ const BlogPage: React.FC = () => {
     const [articles, setArticles] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const categories = ['Todos', 'Tendencias', 'Materiales', 'Cocinas', 'Tecnología', 'Industrial', 'Arquitectura'];
+    const categories = ['Todos', 'Tendencias (Moda Actual)', 'Evergreen (Vigencia)', 'SEO Local (Posicionamiento Regional)'];
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -36,7 +36,7 @@ const BlogPage: React.FC = () => {
 
     const filteredArticles = activeCategory === 'Todos'
         ? articles
-        : articles.filter(article => article.category === activeCategory);
+        : articles.filter(article => article.category.toLowerCase() === activeCategory.toLowerCase());
 
     const handleSubscribe = (e: React.FormEvent) => {
         e.preventDefault();
