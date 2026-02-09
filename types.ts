@@ -25,14 +25,14 @@ export interface Project {
 export interface ContactInfo {
   phonePrimary: string;
   phoneSecondary: string;
-  emailPrimary: string;
-  emailSecondary: string;
+  emailPrimary?: string;
+  emailSecondary?: string;
   address: string;
   whatsapp: string;
   instagram: string;
   tiktok: string;
   phone: string; // Alias for phonePrimary
-  email: string; // Alias for emailPrimary
+  email?: string; // Alias for emailPrimary
   social: {
     facebook: string;
     instagram: string;

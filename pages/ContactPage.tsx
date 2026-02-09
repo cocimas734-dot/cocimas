@@ -79,24 +79,13 @@ const ContactPage: React.FC = () => {
                                         <span className="text-gold-500 text-2xl group-hover:text-black-900 transition-colors">📞</span>
                                     </div>
                                     <div className="ml-6">
-                                        <p className="text-xs text-gold-500 font-bold uppercase tracking-wider mb-1">Llámanos</p>
-                                        <a href={`tel:${CONTACT_INFO.phone}`} className="text-2xl text-white font-display font-bold group-hover:text-gold-500 transition-colors">
+                                        <p className="text-xs text-gold-500 font-bold uppercase tracking-wider mb-1">Escríbenos</p>
+                                        <a href={CONTACT_INFO.whatsapp} target="_blank" rel="noreferrer" className="text-2xl text-white font-display font-bold group-hover:text-gold-500 transition-colors">
                                             {CONTACT_INFO.phone}
                                         </a>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start group">
-                                    <div className="flex-shrink-0 w-14 h-14 rounded-full border border-gold-500/30 flex items-center justify-center bg-gray-900 group-hover:bg-gold-500 group-hover:shadow-[0_0_15px_rgba(255,190,38,0.4)] transition-all duration-300">
-                                        <span className="text-gold-500 text-2xl group-hover:text-black-900 transition-colors">✉️</span>
-                                    </div>
-                                    <div className="ml-6">
-                                        <p className="text-xs text-gold-500 font-bold uppercase tracking-wider mb-1">Correo Electrónico</p>
-                                        <a href={`mailto:${CONTACT_INFO.email}`} className="text-2xl text-white font-display font-bold group-hover:text-gold-500 transition-colors">
-                                            {CONTACT_INFO.email}
-                                        </a>
-                                    </div>
-                                </div>
 
                                 <div className="flex items-start group">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full border border-gold-500/30 flex items-center justify-center bg-gray-900 group-hover:bg-gold-500 group-hover:shadow-[0_0_15px_rgba(255,190,38,0.4)] transition-all duration-300">
