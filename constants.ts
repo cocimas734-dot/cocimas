@@ -10,7 +10,6 @@ import { ContactInfo, NavItem, Service, Project } from './types';
 
 export const CONTACT_INFO: ContactInfo = {
   phonePrimary: "0412-2901033",
-  phoneSecondary: "0424-4280181",
   address: "Calle Principal, Centro Industrial Inversiones Trinacria, Nave Unica Local Galpon Nro G-2, Urb Industrial Los Guayos, Carabobo, Zona Postal 2010",
   whatsapp: "https://wa.me/584122901033?text=Solicitando%20informaci%C3%B3n%20desde%20la%20WEB%20COCIMAS",
   instagram: "https://www.instagram.com/cocimas357",

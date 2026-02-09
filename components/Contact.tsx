@@ -36,7 +36,6 @@ const Contact: React.FC = () => {
                   <a href={CONTACT_INFO.whatsapp} target="_blank" rel="noreferrer" className="text-gray-400 text-sm hover:text-gold-500 transition-colors">
                     {CONTACT_INFO.phonePrimary}
                   </a>
-                  <p className="text-gray-400 text-sm">{CONTACT_INFO.phoneSecondary}</p>
                 </div>
               </div>
 

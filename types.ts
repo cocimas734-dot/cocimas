@@ -24,7 +24,6 @@ export interface Project {
 
 export interface ContactInfo {
   phonePrimary: string;
-  phoneSecondary: string;
   emailPrimary?: string;
   emailSecondary?: string;
   address: string;
