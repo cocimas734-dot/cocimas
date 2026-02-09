@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import { getPublishedNews } from '../services/supabase';
+import { getPublishedNews, subscribeToNewsletter } from '../services/supabase';
 
 const BlogPage: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState('Todos');
     const [articles, setArticles] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [subscribing, setSubscribing] = useState(false);
+    const [email, setEmail] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const ARTICLES_PER_PAGE = 6;
 
@@ -51,9 +53,15 @@ const BlogPage: React.FC = () => {
         setCurrentPage(1);
     };
 
-    const handleSubscribe = (e: React.FormEvent) => {
+    const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
-        alert('¡Gracias por suscribirte! Recibirás nuestras últimas noticias.');
+        setSubscribing(true);
+        const result = await subscribeToNewsletter(email);
+        alert(result.message);
+        if (result.success) {
+            setEmail('');
+        }
+        setSubscribing(false);
     };
 
     return (
@@ -229,13 +237,16 @@ const BlogPage: React.FC = () => {
                             className="flex-1 bg-black-900 border border-gray-700 text-white placeholder-gray-500 px-6 py-4 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
                             placeholder="Tu correo electrónico"
                             type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                         <button
-                            className="bg-gold-500 text-black-900 font-black uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors shadow-lg hover:shadow-[0_0_30px_rgba(255,190,38,0.5)] whitespace-nowrap"
+                            className="bg-gold-500 text-black-900 font-black uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors shadow-lg hover:shadow-[0_0_30px_rgba(255,190,38,0.5)] whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
                             type="submit"
+                            disabled={subscribing}
                         >
-                            Suscribirme
+                            {subscribing ? 'Procesando...' : 'Suscribirme'}
                         </button>
                     </form>
                     <p className="text-gray-600 text-xs mt-4">Sin spam. Solo diseño de alto nivel.</p>

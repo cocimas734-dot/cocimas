@@ -35,3 +35,19 @@ export const getNewsById = async (id: string | number) => {
     }
     return data;
 };
+
+export const subscribeToNewsletter = async (email: string) => {
+    const { data, error } = await supabase
+        .from('suscriptores')
+        .insert([{ email }]);
+
+    if (error) {
+        if (error.code === '23505') { // Código de error de duplicado en Postgres
+            return { success: false, message: 'Este correo ya está suscrito.' };
+        }
+        console.error('Error subscribing to newsletter:', error);
+        return { success: false, message: 'Ocurrió un error al procesar tu suscripción.' };
+    }
+
+    return { success: true, message: '¡Te has suscrito correctamente!' };
+};
